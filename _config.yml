@@ -1,8 +1,8 @@
 markdown: rdiscount
 markdown: redcarpet
 permalink: /:year/:month/:day/:title/
-url: http://lovelife.github.io
-author: lovelife
+url: http://durians.github.io
+author: durians
 highlighter: pygments
 pygments: true
 safe: true
