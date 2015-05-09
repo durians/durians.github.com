@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "24点"
+title: "24点游戏的实现"
 description: "24点游戏"
 categories:
-- 编写的小游戏
+- 榴莲项目
+
 tags:
-- 
+- 24点
 
 
 ---
