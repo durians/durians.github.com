@@ -14,10 +14,68 @@ tags:
   - Github 
   - git
   - Blog
+  - vim
+  - shell
  
 ---
 
 
+##C语言使用感受
+>
+>1. 没有高级数据结构，树、栈、hashmap什么的都要自己写，好麻烦啊。
+>
+>基础数据结构的实现：C。
+>
+>若不实现只是使用这些数据结构用：C＋＋／JAVA。
+>
+>啊，数据结构啊，对我来说还是太难了。
+
+
+##C语言中调用Shell脚本
+>**system("shell command")**
+>
+>*popen*
+>
+
+
+##vim的一些问题与解答
+[更多可参考][vim]
+
+>**vim 默认换行、tab是8个空格宽，如何设置成四个？**
+>
+	
+	set ts=4
+	set sw=4
+
+>**vim下如何复制？**
+>
+
+	yy复制游标所在行整行。或大写一个Y。 
+	2yy或y2y复制两行。
+	
+	y^复制至行首，或y0。不含游标所在处字元。 
+	y$复制至行尾。含游标所在处字元。 
+	
+	yw复制一个word。 
+	y2w复制两个字（单词）。 
+	
+	yG复制至档尾。 
+	y1G复制至档首。 
+	
+	p小写p代表贴至游标后（下）。 
+	P大写P代表贴至游标前（上）。
+
+>**vim 撤销**
+
+	u        撤销
+	ctrl r   反撤销
+
+[vim]:http://wenku.baidu.com/link?url=J-AONv90oy4vUIF-d5YxYAHb2cRRf0d2zKZm62DaCgFVnb-eezd0faTYTJqRSSszDjNYUBHHP8EE-SeoAMF9ula_3yteOhd7DcOY91ZJbDe
+
+
+
+
+##Jekyll的使用
 **1. 安装git、ruby**
 
 **2. Github创建Repository，命名必须同下**
@@ -268,3 +326,4 @@ Git push error result＝55
 [Love](/media/files/2013/03/30/lovelife.jpg)
 [Unix](/media/files/2013/04/05/Unix四十年.pdf)	
 
+	
