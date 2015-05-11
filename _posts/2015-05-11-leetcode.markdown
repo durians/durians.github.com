@@ -1,0 +1,37 @@
+---
+layout: post
+title: "leetcode: Two Sum"
+description: ""
+categories:
+- leetcode
+tags:
+- acm
+- hash
+
+
+---
+
+###[Two Sum][0]解题过程中遇到的一些问题
+
+[0]:https://leetcode.com/problems/two-sum/
+
+>**暴力方法，O(N^2) 超时**
+
+>**Hash，使查找复杂度由O(N)降成O(1)**
+>
+>*采用直接hash方法，即，hash[nums[i]] = i + 1 , 存在问题*
+>
+>>1.重复的数如何处理？
+>
+>可以再hash的办法，但处理起来比较麻烦，对于这题，采用一些编码技巧就可以解决。
+>
+>>2.nums[i]为负数，数组越界咋办？采用下面hash方法解决负数的问题
+>	
+```c
+	#define HASH_MAX_SIZE    (1000000)  
+	#define HASH_KEY(value)  (unsigned int)(value)%HASH_MAX_SIZE
+	hash[HASH_KEY(nums[i])] = i + 1;
+```		
+
+>*三、其他解决办法*
+>
