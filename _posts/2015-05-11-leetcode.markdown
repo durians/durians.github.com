@@ -11,18 +11,28 @@ tags:
 
 ---
 
+Given an array of integers, find two numbers such that they add up to a specific target number.
 
-####*暴力方法，O(N^2) 超时*
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+
+You may assume that each input would have exactly one solution.
+
+Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2
+
+[submit solution][0]
+
+####一、暴力方法，O(N^2) 超时
 >改用Hash，使查找复杂度由O(N)降成O(1)
 
 
 
-####*采用直接hash方法，即，hash[nums[i]] = i + 1*
-**1.重复的数如何处理？**
+####二、采用hash
+*1.重复的数如何处理？*
 >可以再hash的办法，但处理起来比较麻烦，对于这题，采用一些编码技巧就可以解决。
 
-**2.nums[i]为负数，数组越界咋办？**
->采用下面hash方法解决负数的问题
+*2.直接哈希hash[nums[i]] = i + 1,nums[i]为负数，数组越界咋办？*
+>采用下面hash方法解决**负数**的问题
 >	
 ```c
 	#define HASH_MAX_SIZE    (1000000)  
@@ -30,7 +40,7 @@ tags:
 	hash[HASH_KEY(nums[i])] = i + 1;
 ```		
 
-####*[Two Sum][0]AC代码如下*
+####三、AC代码如下
 
 ```c
 int* twoSum(int* nums, int numsSize, int target) 
