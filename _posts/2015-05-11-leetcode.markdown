@@ -11,21 +11,18 @@ tags:
 
 ---
 
-###[Two Sum][0]解题过程中遇到的一些问题
 
-[0]:https://leetcode.com/problems/two-sum/
+####*暴力方法，O(N^2) 超时*
+>改用Hash，使查找复杂度由O(N)降成O(1)
 
->**暴力方法，O(N^2) 超时**
 
->**Hash，使查找复杂度由O(N)降成O(1)**
->
->*采用直接hash方法，即，hash[nums[i]] = i + 1 , 存在问题*
->
->>1.重复的数如何处理？
->
+
+####*采用直接hash方法，即，hash[nums[i]] = i + 1*
+**1.重复的数如何处理？**
 >可以再hash的办法，但处理起来比较麻烦，对于这题，采用一些编码技巧就可以解决。
->
->>2.nums[i]为负数，数组越界咋办？采用下面hash方法解决负数的问题
+
+**2.nums[i]为负数，数组越界咋办？**
+>采用下面hash方法解决负数的问题
 >	
 ```c
 	#define HASH_MAX_SIZE    (1000000)  
@@ -33,5 +30,41 @@ tags:
 	hash[HASH_KEY(nums[i])] = i + 1;
 ```		
 
->*三、其他解决办法*
+####*[Two Sum][0]AC代码如下*
+
+```c
+int* twoSum(int* nums, int numsSize, int target) 
+{
+#define HASH_MAX_SIZE    (100000)    
+#define HASH_KEY(value)  (unsigned int)(value)%HASH_MAX_SIZE    
+
+    int *result = (int *)malloc(2*sizeof(int));
+    result[0] = 0, result[1] = 0;
+    
+    int hash[HASH_MAX_SIZE] = {0};
+    
+    int i, tofind;
+    for(i = 0; i < numsSize; i++)
+    {
+        tofind = target - nums[i];
+        if(0 == hash[HASH_KEY(tofind)] )
+            hash[HASH_KEY(nums[i])] = i + 1;
+        else
+        {
+            result[0] = hash[HASH_KEY(tofind)];
+            result[1] = i+1;
+            return result;
+        }
+    }
+    
+    return result;
+}
+```
+
+####*三、其他解决办法*
 >
+>
+
+
+
+[0]:https://leetcode.com/problems/two-sum/
