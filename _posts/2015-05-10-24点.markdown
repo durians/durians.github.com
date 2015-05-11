@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "24点游戏的实现"
+title: "C解24点"
 description: "24点游戏"
 categories:
 - 榴莲项目

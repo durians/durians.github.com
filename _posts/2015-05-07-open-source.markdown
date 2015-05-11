@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "一些好玩的开源项目"
+title: "OpenSource"
 description: ""
 categories:
 - 榴莲项目
