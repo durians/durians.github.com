@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Two Sum"
+title: "leetcode: Two Sum"
 description: ""
 categories:
 - leetcode

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "leetcode:Largest Number"
+title: "leetcode: Largest Number"
 description: ""
 categories:
 - leetcode
@@ -16,7 +16,69 @@ For example, given [3, 30, 34, 5, 9], the largest formed number is 9534330.
 
 Note: The result may be very large, so you need to return a string instead of an integer.
 
-##关键在于排序
+
+##按字符串排序处理
+
+**a与b排序，直接比较字符串ab与ba即可**
+
+	a=3, b=30, ab=330,ba=303 ab > ba
+	a=121,b=121111, ab=121121111,ba=121111121, ab > ba
+	a=824, b=8247, ab=8248247, ba=8247824, ab > ba
+	...
+
+**AC代码如下**
+
+```c
+int compare(const void *p, const void *q)
+{
+    char *a = *(char **)p;
+    char *b = *(char **)q;
+    
+    char str1[64] = {0};
+    char str2[64] = {0};
+    
+    strcat(str1,a),strcat(str1,b);
+    strcat(str2,b),strcat(str2,a);
+
+    int ret = strcmp(str2,str1);
+    
+    return ret; 
+}
+char* largestNumber(int* nums, int numsSize) 
+{
+    char **numstr; 
+    int i, len = 0;
+    
+    numstr = (char **)malloc(numsSize*sizeof(char*));
+    
+    for( i = 0; i < numsSize; i++)
+    {
+        numstr[i] = (char *)malloc(32); 
+        memset(numstr[i],0,32);
+        sprintf(numstr[i],"%d",nums[i]);
+        if(nums[i])
+            len += strlen(numstr[i]);  
+    }
+    qsort(numstr,numsSize,sizeof(char *),compare);
+    
+    if(len == 0) return "0";
+    
+    char *result = (char *)malloc(len);
+    memset(result,0,len);
+    for(i = 0; i < numsSize; i++)
+    {
+        strcat(result,numstr[i]);
+        free(numstr[i]); 
+    }
+    free(numstr);
+    
+    return result;
+    
+}
+```	
+
+
+##第一次AC的思路和代码
 
 **1.按高位最大排序**
 	
@@ -146,61 +208,3 @@ char* largestNumber(int* nums, int numsSize)
 }
 ```   	
    	
-##按字符串排序处理方便
-**a与b排序直接比较字符串ab与ba即可**
-
-	a=3, b=30, ab=330,ba=303 ab > ba
-	a=121,b=121111, ab=121121111,ba=121111121, ab > ba
-	a=824, b=8247, ab=8248247, ba=8247824, ab > ba
-	...
-
-**AC代码如下**
-
-```c
-int compare(const void *p, const void *q)
-{
-    char *a = *(char **)p;
-    char *b = *(char **)q;
-    
-    char str1[64] = {0};
-    char str2[64] = {0};
-    
-    strcat(str1,a),strcat(str1,b);
-    strcat(str2,b),strcat(str2,a);
-
-    int ret = strcmp(str2,str1);
-    
-    return ret; 
-}
-char* largestNumber(int* nums, int numsSize) 
-{
-    char **numstr; 
-    int i, len = 0;
-    
-    numstr = (char **)malloc(numsSize*sizeof(char*));
-    
-    for( i = 0; i < numsSize; i++)
-    {
-        numstr[i] = (char *)malloc(32); 
-        memset(numstr[i],0,32);
-        sprintf(numstr[i],"%d",nums[i]);
-        if(nums[i])
-            len += strlen(numstr[i]);  
-    }
-    qsort(numstr,numsSize,sizeof(char *),compare);
-    
-    if(len == 0) return "0";
-    
-    char *result = (char *)malloc(len);
-    memset(result,0,len);
-    for(i = 0; i < numsSize; i++)
-    {
-        strcat(result,numstr[i]);
-        free(numstr[i]); 
-    }
-    free(numstr);
-    
-    return result;
-    
-}
-```	
